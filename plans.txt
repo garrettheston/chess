@@ -1,0 +1,31 @@
+Map to create chess game:
+
+Higher level categorization of the game:
+
+24 design patterns:
+* The biggest ones are the architectural design patterns that design the overall architecture of a design:
+* Architecture design patterns define the high level relationship between all of the different objects in a program.
+* So think of MVC: Model (processing and behind-the-scenes), View (GUI, CLI, general literal view of the program by the user),
+ Controller (How the user interfaces with the Model (and consequently changes the view))
+* AI kinda sucks at this, not of the fault of AI but rather because the person prompting doesn't understand that they may need to scale the
+program
+
+For chess game, I want to have a model-view-controller architecture.
+
+MODEL: Game (Singleton).
+    -> Board object used to contain the actual array representing the board
+        -> Might need a piece object
+    -> Validation object used that probably just contains utility functions to prove the rules work (Singleton)
+    -> Input Processing object (Singleton)
+
+* Game will have GameFsm.cpp which will contain the finite-state-machine. {Initialize, Wait for Input, Validate Move, Update Board, Check State, Game Over}
+
+VIEW: CLI (functions include printing message and printing board)
+
+CONTROLLER: Player (player 1 and player 2) who will issue commands that will be processed by the model
+
+
+For the board, I want to represent it with an array
+    -> The board will transform if it passes validation
+    -> The array will contain an enumeration representing all of the pieces. They will be assigned a number based on score
+        -> There will be two different enumerations for the red vs white pieces
