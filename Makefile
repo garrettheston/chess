@@ -1,29 +1,34 @@
+# Compiler and flags
 CXX = g++
 CXXFLAGS = -Wall -std=c++17
 
 # Source files with paths
 SRC = \
-    Model/Game.cpp \
-    Model/GameFsm.cpp \
-    Model/Validation.cpp \
-    Model/Board.cpp \
+    Game/Game.cpp \
+    Game/GameFsm.cpp \
+    Game/Validation.cpp \
+    Game/Board.cpp \
     View/View.cpp \
     Controller/ViewController.cpp \
-    Main/main.cpp
+    main.cpp
 
-# Object files (just change .cpp to .o with path preserved)
+# Object files (convert .cpp to .o while preserving paths)
 OBJ = $(SRC:.cpp=.o)
 
+# Final output binary
 TARGET = chess_game
 
+# Default target
 all: $(TARGET)
 
+# Link all object files to create the executable
 $(TARGET): $(OBJ)
-    $(CXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# Compile each .cpp to .o in its subfolder
+# Compile each source file into its object file
 %.o: %.cpp
-    $(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+# Clean up build artifacts
 clean:
-    rm -f $(OBJ) $(TARGET)
+	rm -f $(OBJ) $(TARGET)

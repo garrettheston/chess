@@ -7,12 +7,11 @@
 // sep 27
 
 enum class GameState {
-	INITIALIZE_GAME,
-	WAIT_FOR_MOVE,
-	VALIDATE_MOVE,
-	UPDATE_BOARD,
-    CHECK_STATE,
-    GAME_OVER
+	INITIALIZE,
+	WAIT,
+	VALIDATION,
+	UPDATE,
+    GAMEOVER
 };
 
 // Thoughts on how validate the movement within the chess board
@@ -27,9 +26,8 @@ enum class GameState {
 // So I can transition to the next state by simply supplying the current state into the map and then it transitions
     // TODO: incorporeate more complex transition logic
 std::map<GameState, GameState> gameStateTransitions = {
-    {GameState::INITIALIZE_GAME, GameState::WAIT_FOR_MOVE},
-    {GameState::WAIT_FOR_MOVE, GameState::VALIDATE_MOVE},
-    {GameState::VALIDATE_MOVE, GameState::UPDATE_BOARD},
-    {GameState::UPDATE_BOARD, GameState::CHECK_STATE},
-    {GameState::CHECK_STATE, GameState::GAME_OVER}
+    {GameState::INITIALIZE, GameState::WAIT},
+    {GameState::WAIT, GameState::VALIDATION},
+    {GameState::VALIDATION, GameState::UPDATE},
+    {GameState::UPDATE, GameState::GAMEOVER}
 };
